@@ -1,0 +1,884 @@
+@prefix : <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#> .
+
+<http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines> rdf:type owl:Ontology ;
+                                                                    <http://purl.org/dc/terms/license> "http://purl.org/NET/rdflicense/cc-by4.0" ;
+                                                                    rdfs:comment "Ontology about spanish wines by Carles Gallel Soler." ;
+                                                                    rdfs:label "Spanish wines ontology" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#sameAs
+rdfs:sameAs rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#hasPrice
+:hasPrice rdf:type owl:ObjectProperty ,
+                   owl:FunctionalProperty ,
+                   owl:AsymmetricProperty ,
+                   owl:IrreflexiveProperty ;
+          rdfs:domain :Wine ;
+          rdfs:range :Price ,
+                     :WineCharacteristics .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#hasWinery
+:hasWinery rdf:type owl:ObjectProperty ,
+                    owl:FunctionalProperty ,
+                    owl:AsymmetricProperty ,
+                    owl:IrreflexiveProperty ;
+           rdfs:domain :Wine ;
+           rdfs:range :Winery ;
+           rdfs:comment "Relation between the wine and a winery." .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#hasWines
+:hasWines rdf:type owl:ObjectProperty ,
+                   owl:IrreflexiveProperty ;
+          rdfs:domain :Winery ;
+          rdfs:range :Wine ;
+          rdfs:comment "Relation between a winery and its wines." .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#isAcidityType
+:isAcidityType rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ,
+                        owl:AsymmetricProperty ,
+                        owl:IrreflexiveProperty ;
+               rdfs:domain :Wine ;
+               rdfs:range :Acidity ,
+                          :Properties ,
+                          :WineCharacteristics ;
+               rdfs:comment "Relation between the wine and a acidity wine." .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#isBodyType
+:isBodyType rdf:type owl:ObjectProperty ,
+                     owl:FunctionalProperty ,
+                     owl:AsymmetricProperty ,
+                     owl:IrreflexiveProperty ;
+            rdfs:domain :Wine ;
+            rdfs:range :Body ,
+                       :Properties ,
+                       :WineCharacteristics ;
+            rdfs:comment "Relation between the wine and a body wine." .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#isFrom
+:isFrom rdf:type owl:ObjectProperty ,
+                 owl:FunctionalProperty ,
+                 owl:AsymmetricProperty ,
+                 owl:IrreflexiveProperty ;
+        rdfs:domain :Wine ;
+        rdfs:range :Wine ,
+                   :WineRegions ;
+        rdfs:comment "Relation between the wine and a wine region." .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#isType
+:isType rdf:type owl:ObjectProperty ,
+                 owl:FunctionalProperty ,
+                 owl:AsymmetricProperty ,
+                 owl:IrreflexiveProperty ;
+        rdfs:domain :Wine ;
+        rdfs:range :Wine ,
+                   :WineTypes ;
+        rdfs:comment "Relation between the wine and a wine type." .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#hasAcidity
+:hasAcidity rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:domain :Wine ;
+            rdfs:range [ rdf:type rdfs:Datatype ;
+                         owl:onDatatype xsd:integer ;
+                         owl:withRestrictions ( [ xsd:minInclusive 1
+                                                ]
+                                                [ xsd:maxInclusive 5
+                                                ]
+                                              )
+                       ] ;
+            rdfs:comment "Acidity of the wine." .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#hasBody
+:hasBody rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
+         rdfs:domain :Wine ;
+         rdfs:range [ rdf:type rdfs:Datatype ;
+                      owl:onDatatype xsd:integer ;
+                      owl:withRestrictions ( [ xsd:minInclusive 1
+                                             ]
+                                             [ xsd:maxInclusive 5
+                                             ]
+                                           )
+                    ] ;
+         rdfs:comment "Body of the wine." .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#hasPrice
+:hasPrice rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:range [ rdf:type rdfs:Datatype ;
+                       owl:onDatatype xsd:decimal ;
+                       owl:withRestrictions ( [ xsd:minInclusive 0.0
+                                              ]
+                                            )
+                     ] .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#hasRating
+:hasRating rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Wine ;
+           rdfs:range [ rdf:type rdfs:Datatype ;
+                        owl:onDatatype xsd:decimal ;
+                        owl:withRestrictions ( [ xsd:minInclusive 1.0
+                                               ]
+                                               [ xsd:maxInclusive 5.0
+                                               ]
+                                             )
+                      ] ;
+           rdfs:comment "Rating of the wine." .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#hasRegion
+:hasRegion rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Wine ;
+           rdfs:range xsd:string ;
+           rdfs:comment "Region of the wine." .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#hasYear
+:hasYear rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
+         rdfs:domain :Wine ;
+         rdfs:range xsd:integer ;
+         rdfs:comment "Year of wine production." .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Acidity
+:Acidity rdf:type owl:Class ;
+         rdfs:subClassOf :Properties ;
+         rdfs:comment "Acidity property of a wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#AragonWine
+:AragonWine rdf:type owl:Class ;
+            rdfs:subClassOf :WineRegions ;
+            rdfs:comment "Aragon wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#AveragePrice
+:AveragePrice rdf:type owl:Class ;
+              rdfs:subClassOf :Price ;
+              owl:disjointWith :Cheap ,
+                               :Expensive ;
+              rdfs:comment "Average price wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Body
+:Body rdf:type owl:Class ;
+      rdfs:subClassOf :Properties ;
+      rdfs:comment "Body property of a wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Cheap
+:Cheap rdf:type owl:Class ;
+       rdfs:subClassOf :Price ;
+       owl:disjointWith :Expensive ;
+       rdfs:comment "Cheap wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#ConcaDeBarberaWine
+:ConcaDeBarberaWine rdf:type owl:Class ;
+                    rdfs:subClassOf :WineRegions ;
+                    rdfs:comment "Conca de Barbera wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#EmpordaWine
+:EmpordaWine rdf:type owl:Class ;
+             rdfs:subClassOf :WineRegions ;
+             rdfs:comment "Emporda wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Expensive
+:Expensive rdf:type owl:Class ;
+           rdfs:subClassOf :Price ;
+           rdfs:comment "Expensive wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#FullBodied
+:FullBodied rdf:type owl:Class ;
+            rdfs:subClassOf :Body ;
+            owl:disjointWith :LightBodied ,
+                             :MediumBodied ;
+            rdfs:comment "Wine with full body" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Grenache
+:Grenache rdf:type owl:Class ;
+          rdfs:subClassOf :WineTypes ;
+          rdfs:comment "Grenache wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#HighAcidity
+:HighAcidity rdf:type owl:Class ;
+             rdfs:subClassOf :Acidity ;
+             owl:disjointWith :LowAcidity ,
+                              :MediumAcidity ;
+             rdfs:comment "Wine with high acidity" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#LightBodied
+:LightBodied rdf:type owl:Class ;
+             rdfs:subClassOf :Body ;
+             owl:disjointWith :MediumBodied ;
+             rdfs:comment "Wine with light body" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#LowAcidity
+:LowAcidity rdf:type owl:Class ;
+            rdfs:subClassOf :Acidity ;
+            owl:disjointWith :MediumAcidity ;
+            rdfs:comment "Wine with low acidity" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#MediumAcidity
+:MediumAcidity rdf:type owl:Class ;
+               rdfs:subClassOf :Acidity ;
+               rdfs:comment "Wine with medium acidity" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#MediumBodied
+:MediumBodied rdf:type owl:Class ;
+              rdfs:subClassOf :Body ;
+              rdfs:comment "Wine with medium body" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Price
+:Price rdf:type owl:Class ;
+       rdfs:subClassOf :WineCharacteristics ;
+       rdfs:comment "Price in euro of a wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#PrioratRed
+:PrioratRed rdf:type owl:Class ;
+            rdfs:subClassOf :WineTypes ;
+            rdfs:comment "Priorat red wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#PrioratoWine
+:PrioratoWine rdf:type owl:Class ;
+              rdfs:subClassOf :WineRegions ;
+              rdfs:comment "Priorato wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Properties
+:Properties rdf:type owl:Class ;
+            rdfs:subClassOf :WineCharacteristics ;
+            rdfs:comment "Properties of a wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Rating
+:Rating rdf:type owl:Class ;
+        rdfs:subClassOf :WineCharacteristics ;
+        rdfs:comment "Rating between 1 and 5 with decimals of a wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Red
+:Red rdf:type owl:Class ;
+     rdfs:subClassOf :WineTypes ;
+     rdfs:comment "Red wine" ;
+     rdfs:sameAs "https://dbpedia.org/page/Red_wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#RiberaDelDueroRed
+:RiberaDelDueroRed rdf:type owl:Class ;
+                   rdfs:subClassOf :WineTypes ;
+                   rdfs:comment "Ribera del Duero red wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#RiberaDelDueroWine
+:RiberaDelDueroWine rdf:type owl:Class ;
+                    rdfs:subClassOf :WineRegions ;
+                    rdfs:comment "Ribera del Duero wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#RiojaWhite
+:RiojaWhite rdf:type owl:Class ;
+            rdfs:subClassOf :WineTypes ;
+            rdfs:comment "Rioja white wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#RiojaWine
+:RiojaWine rdf:type owl:Class ;
+           rdfs:subClassOf :WineRegions ;
+           rdfs:comment "Rioja wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Syrah
+:Syrah rdf:type owl:Class ;
+       rdfs:subClassOf :WineTypes ;
+       rdfs:comment "Syrah wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Wine
+:Wine rdf:type owl:Class ;
+      rdfs:comment "Wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#WineCharacteristics
+:WineCharacteristics rdf:type owl:Class ;
+                     rdfs:comment "Characteristics of a wine" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#WineRegions
+:WineRegions rdf:type owl:Class ;
+             rdfs:subClassOf :Wine ;
+             rdfs:comment "Region of Spain" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#WineTypes
+:WineTypes rdf:type owl:Class ;
+           rdfs:subClassOf :Wine ;
+           rdfs:comment "Types of wines" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Winery
+:Winery rdf:type owl:Class ;
+        rdfs:comment "Winery" ;
+        rdfs:sameAs "https://dbpedia.org/page/Winery" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Year
+:Year rdf:type owl:Class ;
+      rdfs:subClassOf :WineCharacteristics ;
+      rdfs:comment "Year of a wine" ;
+      rdfs:sameAs "https://dbpedia.org/page/Year" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Bodegas_Frontonio
+:Bodegas_Frontonio rdf:type owl:NamedIndividual ,
+                            :Winery .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Clos_Abella_Seleccion_Especial
+:Clos_Abella_Seleccion_Especial rdf:type owl:NamedIndividual ,
+                                         :Acidity ,
+                                         :MediumAcidity ,
+                                         :PrioratoWine ,
+                                         :Properties ,
+                                         :Wine ,
+                                         :WineCharacteristics ,
+                                         :WineRegions ;
+                                :hasWinery :Marco_Abella ;
+                                :hasAcidity 3 ;
+                                :hasBody 4 ;
+                                :hasPrice 43.85 ;
+                                :hasRating 4.4 ;
+                                :hasRegion "Priorato" ;
+                                :hasYear 2014 .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Familia_Torres
+:Familia_Torres rdf:type owl:NamedIndividual ,
+                         :Winery .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Marco_Abella
+:Marco_Abella rdf:type owl:NamedIndividual ,
+                       :Winery .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Miguel_Merino
+:Miguel_Merino rdf:type owl:NamedIndividual ,
+                        :Winery .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Olivardots
+:Olivardots rdf:type owl:NamedIndividual ,
+                     :Winery .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Salmos
+:Salmos rdf:type owl:NamedIndividual ,
+                 :Acidity ,
+                 :MediumAcidity ,
+                 :PrioratoWine ,
+                 :Properties ,
+                 :Wine ,
+                 :WineCharacteristics ,
+                 :WineRegions ;
+        :hasWinery :Familia_Torres ;
+        :hasAcidity 3 ;
+        :hasBody 4 ;
+        :hasPrice 24.85 ;
+        :hasRating 4.2 ;
+        :hasRegion "Priorato" ;
+        :hasYear 2016 .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Unico
+:Unico rdf:type owl:NamedIndividual ,
+                :Acidity ,
+                :MediumAcidity ,
+                :Properties ,
+                :RiberaDelDueroWine ,
+                :Wine ,
+                :WineCharacteristics ,
+                :WineRegions ;
+       :hasWinery :Vega_Sicilia ;
+       :hasAcidity 3 ;
+       :hasBody 5 ;
+       :hasPrice 324.95 ;
+       :hasRating 4.8 ;
+       :hasRegion "Ribera del Duero" ;
+       :hasYear 2009 .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Vega_Sicilia
+:Vega_Sicilia rdf:type owl:NamedIndividual ,
+                       :Winery ;
+              rdfs:sameAs "https://dbpedia.org/page/Vega_Sicilia" .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Vitola_Reserva
+:Vitola_Reserva rdf:type owl:NamedIndividual ,
+                         :Acidity ,
+                         :MediumAcidity ,
+                         :Properties ,
+                         :RiojaWine ,
+                         :Wine ,
+                         :WineCharacteristics ,
+                         :WineRegions ;
+                :hasWinery :Miguel_Merino ;
+                :hasAcidity 3 ;
+                :hasBody 4 ;
+                :hasPrice 21.9 ;
+                :hasRating 4.3 ;
+                :hasRegion "Rioja" ;
+                :hasYear 2016 .
+
+
+###  http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Vd'O_1_Samso_-_Pissarra
+<http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines#Vd'O_1_Samso_-_Pissarra> rdf:type owl:NamedIndividual ,
+                                                                                                    :Acidity ,
+                                                                                                    :EmpordaWine ,
+                                                                                                    :MediumAcidity ,
+                                                                                                    :Properties ,
+                                                                                                    :Wine ,
+                                                                                                    :WineCharacteristics ,
+                                                                                                    :WineRegions ;
+                                                                                           :hasWinery :Olivardots ;
+                                                                                           :hasAcidity 3 ;
+                                                                                           :hasBody 4 ;
+                                                                                           :hasPrice 34.95 ;
+                                                                                           :hasRating 4.3 ;
+                                                                                           :hasRegion "Emporda" ;
+                                                                                           :hasYear 2012 .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:hasPrice rdfs:comment "Price of the wine in euro." .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+:w rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:r rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/w> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/a> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S3" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Wine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/w>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasAcidity ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/w> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/a>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#lessThan> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/a> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first 3 ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :LowAcidity ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/w>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S9" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Wine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasRegion ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :w ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :r
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#equal> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first :r ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "Aragon" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :AragonWine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S8" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Wine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasRegion ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :w ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :r
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#equal> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first :r ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "Conca de Barbera" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :ConcaDeBarberaWine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S7" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Wine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasRegion ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :w ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :r
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#equal> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first :r ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "Emporda" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :EmpordaWine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S4" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Wine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasRegion ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :w ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :r
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#equal> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first :r ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "Priorato" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :PrioratoWine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S5" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Wine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasRegion ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :w ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :r
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#equal> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first :r ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "Ribera del Duero" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :PrioratoWine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S6" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Wine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasRegion ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :w ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :r
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#equal> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first :r ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "Rioja" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :RiojaWine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :w
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S2" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Wine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/w>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasAcidity ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/w> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/a>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#equal> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/a> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first 3 ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :MediumAcidity ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/w>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S1" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Wine ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/w>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasAcidity ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/w> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/a>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/a> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first 3 ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :HighAcidity ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/taler/ontologies/2023/4/spanish-wines/w>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
